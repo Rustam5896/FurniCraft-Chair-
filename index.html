@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="hi">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Furniture Store</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #666667 0%, #764ba2 100%);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(238, 90, 36, 0.3);
+        }
+        
+        .category-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="min-h-full bg-gray-50"><!-- Header -->
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+     <div class="flex items-center">
+      <div class="text-2xl font-bold text-gray-800" id="store-name">
+       FurniCraft
+      </div>
+      <div class="ml-3 text-sm text-gray-600" id="tagline">
+       Premium Furniture Collection
+      </div>
+     </div>
+     <div class="hidden md:block">
+      <div class="ml-10 flex items-baseline space-x-4"><a href="#home" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a> <a href="#products" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Products</a> <a href="#categories" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Categories</a> <a href="#contact" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+      </div>
+     </div>
+     <div class="flex items-center space-x-4"><button class="text-gray-700 hover:text-blue-600">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+       </svg></button> <button class="text-gray-700 hover:text-blue-600 relative">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5H19"></path>
+       </svg><span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="cart-count">0</span> </button>
+     </div>
+    </div>
+   </nav>
+  </header>
+  <main><!-- Hero Section -->
+   <section id="home" class="hero-gradient text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     <h1 class="text-5xl md:text-6xl font-bold mb-6" id="hero-title">Transform Your Space</h1>
+     <p class="text-xl md:text-2xl mb-8 opacity-90" id="hero-subtitle">Discover premium furniture that combines style, comfort, and quality</p><button class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold" id="cta-button" onclick="scrollToProducts()">Shop Now</button>
+    </div>
+   </section><!-- Categories Section -->
+   <section id="categories" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Shop by Category</h2>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="category-card text-center p-6 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="filterProducts('chairs')">
+       <div class="category-icon text-6xl mb-4">
+        🪑
+       </div>
+       <h3 class="text-xl font-semibold text-gray-800 mb-2">Chairs</h3>
+       <p class="text-gray-600">Comfortable seating solutions</p>
+      </div>
+      <div class="category-card text-center p-6 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="filterProducts('tables')">
+       <div class="category-icon text-6xl mb-4">
+        🪑
+       </div>
+       <h3 class="text-xl font-semibold text-gray-800 mb-2">Tables</h3>
+       <p class="text-gray-600">Elegant dining &amp; work tables</p>
+      </div>
+      <div class="category-card text-center p-6 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="filterProducts('sofas')">
+       <div class="category-icon text-6xl mb-4">
+        🛋️
+       </div>
+       <h3 class="text-xl font-semibold text-gray-800 mb-2">Sofas</h3>
+       <p class="text-gray-600">Luxurious living room sets</p>
+      </div>
+      <div class="category-card text-center p-6 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="filterProducts('storage')">
+       <div class="category-icon text-6xl mb-4">
+        🗄️
+       </div>
+       <h3 class="text-xl font-semibold text-gray-800 mb-2">Storage</h3>
+       <p class="text-gray-600">Smart storage solutions</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Products Section -->
+   <section id="products" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Featured Products</h2><!-- Filter Buttons -->
+     <div class="flex justify-center mb-8 space-x-4"><button class="filter-btn bg-blue-600 text-white px-6 py-2 rounded-full" onclick="filterProducts('all')">All</button> <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full" onclick="filterProducts('chairs')">Chairs</button> <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full" onclick="filterProducts('tables')">Tables</button> <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full" onclick="filterProducts('sofas')">Sofas</button>
+     </div><!-- Products Grid -->
+     <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"><!-- Products will be dynamically loaded here -->
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Contact Us</h2>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div>
+       <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+       <div class="space-y-4">
+        <div class="flex items-center"><span class="text-2xl mr-4">📍</span> <span>123 Furniture Street, Design City, DC 12345</span>
+        </div>
+        <div class="flex items-center"><span class="text-2xl mr-4">📞</span> <span>+91 98765 43210</span>
+        </div>
+        <div class="flex items-center"><span class="text-2xl mr-4">✉️</span> <span>info@furnicraft.com</span>
+        </div>
+       </div>
+      </div>
+      <div>
+       <form class="space-y-4" onsubmit="handleContactForm(event)"><input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required> <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required> <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></textarea> <button type="submit" class="w-full btn-primary text-white py-3 rounded-lg font-semibold">Send Message</button>
+       </form>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main><!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+     <div>
+      <h3 class="text-xl font-bold mb-4" id="footer-store-name">FurniCraft</h3>
+      <p class="text-gray-400">Premium furniture for modern living spaces.</p>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+      <ul class="space-y-2 text-gray-400">
+       <li><a href="#home" class="hover:text-white">Home</a></li>
+       <li><a href="#products" class="hover:text-white">Products</a></li>
+       <li><a href="#categories" class="hover:text-white">Categories</a></li>
+       <li><a href="#contact" class="hover:text-white">Contact</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Categories</h4>
+      <ul class="space-y-2 text-gray-400">
+       <li><a href="#" class="hover:text-white">Chairs</a></li>
+       <li><a href="#" class="hover:text-white">Tables</a></li>
+       <li><a href="#" class="hover:text-white">Sofas</a></li>
+       <li><a href="#" class="hover:text-white">Storage</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+      <div class="flex space-x-4"><a href="#" class="text-gray-400 hover:text-white text-2xl">📘</a> <a href="#" class="text-gray-400 hover:text-white text-2xl">📷</a> <a href="#" class="text-gray-400 hover:text-white text-2xl">🐦</a>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+     <p>© 2024 FurniCraft. All rights reserved.</p>
+    </div>
+   </div>
+  </footer><!-- Cart Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-lg max-w-md w-full p-6">
+     <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-bold">Shopping Cart</h3><button onclick="closeCart()" class="text-gray-500 hover:text-gray-700">✕</button>
+     </div>
+     <div id="cart-items" class="space-y-4 mb-6"><!-- Cart items will be displayed here -->
+     </div>
+     <div class="border-t pt-4">
+      <div class="flex justify-between items-center mb-4"><span class="font-semibold">Total: ₹<span id="cart-total">0</span></span>
+      </div><button class="w-full btn-primary text-white py-3 rounded-lg font-semibold" onclick="checkout()">Checkout</button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Sample products data
+        const products = [
+            { id: 1, name: "Executive Office Chair", price: 15999, category: "chairs", image: "🪑", rating: 4.5 },
+            { id: 2, name: "Dining Table Set", price: 25999, category: "tables", image: "🪑", rating: 4.8 },
+            { id: 3, name: "Luxury Sofa Set", price: 45999, category: "sofas", image: "🛋️", rating: 4.7 },
+            { id: 4, name: "Study Table", price: 8999, category: "tables", image: "🪑", rating: 4.3 },
+            { id: 5, name: "Recliner Chair", price: 22999, category: "chairs", image: "🪑", rating: 4.6 },
+            { id: 6, name: "Coffee Table", price: 12999, category: "tables", image: "🪑", rating: 4.4 },
+            { id: 7, name: "L-Shape Sofa", price: 38999, category: "sofas", image: "🛋️", rating: 4.5 },
+            { id: 8, name: "Wardrobe", price: 28999, category: "storage", image: "🗄️", rating: 4.2 }
+        ];
+
+        let cart = [];
+        let currentFilter = 'all';
+
+        // Default configuration
+        const defaultConfig = {
+            store_name: "FurniCraft",
+            tagline: "Premium Furniture Collection",
+            hero_title: "Transform Your Space",
+            hero_subtitle: "Discover premium furniture that combines style, comfort, and quality",
+            cta_button: "Shop Now"
+        };
+
+        // Initialize the page
+        function init() {
+            displayProducts(products);
+            updateCartCount();
+            
+            if (window.elementSdk) {
+                window.elementSdk.init({
+                    defaultConfig: defaultConfig,
+                    onConfigChange: async (config) => {
+                        document.getElementById('store-name').textContent = config.store_name || defaultConfig.store_name;
+                        document.getElementById('tagline').textContent = config.tagline || defaultConfig.tagline;
+                        document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+                        document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+                        document.getElementById('cta-button').textContent = config.cta_button || defaultConfig.cta_button;
+                        document.getElementById('footer-store-name').textContent = config.store_name || defaultConfig.store_name;
+                    },
+                    mapToCapabilities: (config) => ({
+                        recolorables: [],
+                        borderables: [],
+                        fontEditable: undefined,
+                        fontSizeable: undefined
+                    }),
+                    mapToEditPanelValues: (config) => new Map([
+                        ["store_name", config.store_name || defaultConfig.store_name],
+                        ["tagline", config.tagline || defaultConfig.tagline],
+                        ["hero_title", config.hero_title || defaultConfig.hero_title],
+                        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+                        ["cta_button", config.cta_button || defaultConfig.cta_button]
+                    ])
+                });
+            }
+        }
+
+        // Display products
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white rounded-lg shadow-md overflow-hidden';
+                productCard.innerHTML = `
+                    <div class="p-6 text-center">
+                        <div class="text-6xl mb-4">${product.image}</div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
+                        <div class="flex justify-center items-center mb-2">
+                            <span class="text-yellow-400">${'★'.repeat(Math.floor(product.rating))}</span>
+                            <span class="text-gray-300">${'★'.repeat(5 - Math.floor(product.rating))}</span>
+                            <span class="ml-2 text-sm text-gray-600">(${product.rating})</span>
+                        </div>
+                        <p class="text-2xl font-bold text-blue-600 mb-4">₹${product.price.toLocaleString()}</p>
+                        <button onclick="addToCart(${product.id})" class="w-full btn-primary text-white py-2 rounded-lg font-semibold">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full';
+            });
+            event.target.className = 'filter-btn bg-blue-600 text-white px-6 py-2 rounded-full';
+
+            // Filter and display products
+            const filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
+            displayProducts(filteredProducts);
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartCount();
+            showAddedToCartMessage(product.name);
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        // Show added to cart message
+        function showAddedToCartMessage(productName) {
+            const message = document.createElement('div');
+            message.className = 'fixed top-20 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            message.textContent = `${productName} added to cart!`;
+            document.body.appendChild(message);
+
+            setTimeout(() => {
+                message.remove();
+            }, 3000);
+        }
+
+        // Scroll to products
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle contact form
+        function handleContactForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            
+            // Show success message
+            const message = document.createElement('div');
+            message.className = 'fixed top-20 right-4 bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            message.textContent = 'Message sent successfully! We will contact you soon.';
+            document.body.appendChild(message);
+
+            setTimeout(() => {
+                message.remove();
+            }, 4000);
+
+            event.target.reset();
+        }
+
+        // Checkout function
+        function checkout() {
+            if (cart.length === 0) {
+                const message = document.createElement('div');
+                message.className = 'fixed top-20 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                message.textContent = 'Your cart is empty!';
+                document.body.appendChild(message);
+
+                setTimeout(() => {
+                    message.remove();
+                }, 3000);
+                return;
+            }
+
+            const message = document.createElement('div');
+            message.className = 'fixed top-20 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            message.textContent = 'Order placed successfully! Thank you for shopping with us.';
+            document.body.appendChild(message);
+
+            setTimeout(() => {
+                message.remove();
+            }, 4000);
+
+            cart = [];
+            updateCartCount();
+            closeCart();
+        }
+
+        // Cart modal functions
+        function openCart() {
+            document.getElementById('cart-modal').classList.remove('hidden');
+            displayCartItems();
+        }
+
+        function closeCart() {
+            document.getElementById('cart-modal').classList.add('hidden');
+        }
+
+        function displayCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center">Your cart is empty</p>';
+                cartTotal.textContent = '0';
+                return;
+            }
+
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'flex justify-between items-center p-3 border rounded';
+                itemElement.innerHTML = `
+                    <div>
+                        <h4 class="font-semibold">${item.name}</h4>
+                        <p class="text-sm text-gray-600">₹${item.price.toLocaleString()} x ${item.quantity}</p>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">Remove</button>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+                total += item.price * item.quantity;
+            });
+
+            cartTotal.textContent = total.toLocaleString();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            displayCartItems();
+        }
+
+        // Add click event to cart button
+        document.querySelector('button[class*="relative"]').addEventListener('click', openCart);
+
+        // Initialize the page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99df027c4104d895',t:'MTc2MzA0NDY3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
